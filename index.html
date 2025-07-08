@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAHEEL WEB DEVELOPER | Premium Web Solutions</title>
+    <meta name="description" content="Professional web development services with cutting-edge animations. Starting at just $5.">
+    <meta name="keywords" content="NAHEEL WEB DEVELOPER, web development services, professional website design">
+    <style>
+        /* ===== Global Styles ===== */
+        :root {
+            --primary: #00f7ff;
+            --secondary: #9d00ff;
+            --accent: #00ffaa;
+            --dark: #0a0a1a;
+            --darker: #050510;
+            --light: #f0f0f0;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        }
+
+        * {
+        
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== Scrollbar ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo span {
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .nav-logo:hover span {
+            transform: rotate(15deg);
+            text-shadow: 0 0 15px var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.5);
+        }
+
+        /* ===== Hero Section ===== */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(157, 0, 255, 0.1) 0%, rgba(10, 10, 26, 1) 70%);
+            z-index: -1;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #logo-container {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 2rem;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        #logo-canvas {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.5));
+        }
+
+        .hero-text {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: var(--transition);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .scroll-down:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .scroll-down span {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--primary);
+            border-right: 2px solid var(--primary);
+            transform: rotate(45deg);
+            margin: -10px;
+            animation: scrollDown 2s infinite;
+        }
+
+        .scroll-down span:nth-child(2) {
+            animation-delay: -0.2s;
+        }
+
+        .scroll-down span:nth-child(3) {
+            animation-delay: -0.4s;
+        }
+
+        @keyframes scrollDown {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg) translate(-20px, -20px);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: rotate(45deg) translate(20px, 20px);
+            }
+        }
+
+        /* ===== Services Section ===== */
+        #services {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--dark), var(--darker));
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 350px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 247, 255, 0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        .pricing-card:hover::before {
+            opacity: 1;
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .pricing-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .price span {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .price-addon {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .card-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .card-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
+        }
+
+        /* ===== Portfolio Section ===== */
+        #portfolio {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--darker), var(--dark));
+            position: relative;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(10, 10, 26, 0.9) 0%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.2);
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            transform: translateY(0);
+        }
+
+        .portfolio-description {
+            transform: translateY(0);
+            opacity: 0.8;
+        }
+
+        /* ===== CV Section ===== */
+        #about {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--dark), var(--darker));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 4rem;
+        }
+
+        #cv-sphere {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        #cv-canvas {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 30px rgba(0, 247, 255, 0.3));
+        }
+
+        .about-text {
+            max-width: 600px;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill {
+            background: rgba(0, 247, 255, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+
+        /* ===== Contact Section ===== */
+        #contact {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--darker), var(--dark));
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 247, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+
+        .contact-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .contact-text a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-text a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: var(--light);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
+        }
+
+        /* ===== WhatsApp Button ===== */
+        #whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            animation: pulse 2s infinite;
+            transition: var(--transition);
+        }
+
+        #whatsapp-btn:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        #whatsapp-btn img {
+            width: 40px;
+            height: 40px;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 1200px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #cv-sphere {
+                margin-bottom: 3rem;
+            }
+
+            .skills {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .pricing-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            #cv-sphere {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-cta {
+                display: block;
+                margin: 1rem auto;
+                width: 80%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            #cv-sphere {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span>NAHEEL</span>
+            </a>
+            <div class="nav-links">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#contact" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div id="particles-js"></div>
+        <div id="logo-container">
+            <canvas id="logo-canvas"></canvas>
+        </div>
+        <div class="hero-text">
+            <h1>Professional Web Solutions</h1>
+            <p>Creating stunning, responsive websites with cutting-edge technology and animations</p>
+            <div>
+                <a href="#services" class="hero-cta">View Services</a>
+                <a href="#contact" class="hero-cta">Contact Me</a>
+            </div>
+        </div>
+        <a href="#services" class="scroll-down">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">My Services</h2>
+        <div class="pricing-cards">
+            <!-- Basic Website -->
+            <div class="pricing-card">
+                <h3>Basic Website</h3>
+                <div class="price">$5<span>.00</span></div>
+                <span class="price-addon">+ $2 for licensed images</span>
+                <ul class="features">
+                    <li>1-Page Responsive Design</li>
+                    <li>Modern HTML5 & CSS3</li>
+                    <li>Mobile-First Approach</li>
+                    <li>Basic SEO Optimization</li>
+                    <li>1 Day Delivery</li>
+                </ul>
+                <a href="#contact" class="card-cta">Get Started</a>
+            </div>
+
+            <!-- Standard Website -->
+            <div class="pricing-card">
+                <h3>Standard Website</h3>
+                <div class="price">$15<span>.00</span></div>
+                <span class="price-addon">+ $4 for licensed images</span>
+                <ul class="features">
+                    <li>3-Page Responsive Design</li>
+                    <li>Advanced Animations</li>
+                    <li>Interactive Elements</li>
+                    <li>Contact Form</li>
+                    <li>1 Day Delivery</li>
+                </ul>
+                <a href="#contact" class="card-cta">Get Started</a>
+            </div>
+
+            <!-- Premium Website -->
+            <div class="pricing-card">
+                <h3>Premium Website</h3>
+                <div class="price">$20<span>.00</span></div>
+                <span class="price-addon">+ $5 for licensed images</span>
+                <ul class="features">
+                    <li>Multi-Page Complex Design</li>
+                    <li>3D & Parallax Effects</li>
+                    <li>Advanced SEO Ready</li>
+                    <li>CMS Integration</li>
+                    <li>2 Days Delivery</li>
+                </ul>
+                <a href="#contact" class="card-cta">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2 class="section-title">My Portfolio</h2>
+        <div class="portfolio-grid">
+            <!-- Portfolio Item 1 -->
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="E-Commerce Website" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">E-Commerce Website</h3>
+                    <p class="portfolio-description">Modern online store with product filtering and cart functionality</p>
+                </div>
+            </div>
+
+            <!-- Portfolio Item 2 -->
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Business Landing Page" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Business Landing Page</h3>
+                    <p class="portfolio-description">Responsive landing page with animated elements</p>
+                </div>
+            </div>
+
+            <!-- Portfolio Item 3 -->
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Personal Portfolio" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Personal Portfolio</h3>
+                    <p class="portfolio-description">Interactive portfolio with 3D elements</p>
+                </div>
+            </div>
+
+            <!-- Portfolio Item 4 -->
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Restaurant Website" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Restaurant Website</h3>
+                    <p class="portfolio-description">Menu system with online reservation functionality</p>
+                </div>
+            </div>
+
+            <!-- Portfolio Item 5 -->
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Blog Platform" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Blog Platform</h3>
+                    <p class="portfolio-description">Content management system for bloggers</p>
+                </div>
+            </div>
+
+            <!-- Portfolio Item 6 -->
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Dashboard UI" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Dashboard UI</h3>
+                    <p class="portfolio-description">Admin dashboard with interactive charts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About/CV Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div id="cv-sphere">
+                <canvas id="cv-canvas"></canvas>
+            </div>
+            <div class="about-text">
+                <h2>NAHEEL WEB DEVELOPER</h2>
+                <p>
+                    I specialize in front-end web development using HTML and CSS. I design clean, modern, and responsive websites, 
+                    and deploy them using live server tools. I'm passionate about creating immersive user experiences with 
+                    cutting-edge animations and interactive elements.
+                </p>
+                <p>
+                    With a keen eye for design and attention to detail, I ensure every website I build is not only functional 
+                    but also visually stunning. My goal is to provide affordable web solutions without compromising on quality.
+                </p>
+                <p>
+                    I'm constantly learning new technologies and experimenting with AI tools to build advanced web-based 
+                    projects in the future. Currently exploring Three.js for 3D web experiences and GSAP for advanced animations.
+                </p>
+                <div class="skills">
+                    <span class="skill">HTML5</span>
+                    <span class="skill">CSS3</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">Responsive Design</span>
+                    <span class="skill">UI/UX</span>
+                    <span class="skill">Three.js</span>
+                    <span class="skill">GSAP</span>
+                    <span class="skill">Web Animations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i>📧</i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Email</h3>
+                        <a href="mailto:contact@naheelwebdeveloper.com">contact@naheelwebdeveloper122@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i>📱</i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Phone</h3>
+                        <a href="tel:+923140474635">+92 314 0474635</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i>💬</i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/923140474635">Chat Now</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i>📍</i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Location</h3>
+                        <p>Pakistan</p>
+                    </div>
+                </div>
+            </div>
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" id="subject" class="form-input" placeholder="Enter subject">
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">Your Message</label>
+                    <textarea id="message" class="form-textarea" placeholder="Enter your message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- WhatsApp Button -->
+    <a id="whatsapp-btn" href="https://wa.me/923140474635" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp">
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">NAHEEL WEB DEVELOPER</div>
+        <div class="footer-links">
+            <a href="#services" class="footer-link">Services</a>
+            <a href="#portfolio" class="footer-link">Portfolio</a>
+            <a href="#about" class="footer-link">About</a>
+            <a href="#contact" class="footer-link">Contact</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-link">FB</a>
+            <a href="#" class="social-link">TW</a>
+            <a href="#" class="social-link">IG</a>
+            <a href="#" class="social-link">LI</a>
+            <a href="#" class="social-link">GH</a>
+        </div>
+        <p class="copyright">&copy; 2023 NAHEEL WEB DEVELOPER. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // ===== Particles.js Initialization =====
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00f7ff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00f7ff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // ===== Three.js Logo Animation =====
+        const logoCanvas = document.getElementById('logo-canvas');
+        const logoRenderer = new THREE.WebGLRenderer({
+            canvas: logoCanvas,
+            alpha: true,
+            antialias: true
+        });
+        logoRenderer.setSize(logoCanvas.width, logoCanvas.height);
+        logoRenderer.setPixelRatio(window.devicePixelRatio);
+
+        const logoScene = new THREE.Scene();
+        const logoCamera = new THREE.PerspectiveCamera(45, logoCanvas.width / logoCanvas.height, 0.1, 1000);
+        logoCamera.position.z = 30;
+
+        // Text geometry
+        const logoLoader = new THREE.FontLoader();
+        logoLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+            const logoTextGeometry = new THREE.TextGeometry('NAHEEL', {
+                font: font,
+                size: 8,
+                height: 2,
+                curveSegments: 12,
+                bevelEnabled: true,
+                bevelThickness: 0.5,
+                bevelSize: 0.3,
+                bevelOffset: 0,
+                bevelSegments: 5
+            });
+
+            const logoMaterial = new THREE.MeshPhongMaterial({
+                color: 0x00f7ff,
+                specular: 0x111111,
+                shininess: 30,
+                transparent: true,
+                opacity: 0.9
+            });
+
+            const logoText = new THREE.Mesh(logoTextGeometry, logoMaterial);
+            logoTextGeometry.computeBoundingBox();
+            const logoCenterOffset = -0.5 * (logoTextGeometry.boundingBox.max.x - logoTextGeometry.boundingBox.min.x);
+            logoText.position.x = logoCenterOffset;
+            logoScene.add(logoText);
+
+            // Lights
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            logoScene.add(ambientLight);
+
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight1.position.set(1, 1, 1);
+            logoScene.add(directionalLight1);
+
+            const directionalLight2 = new THREE.DirectionalLight(0x00aaff, 0.5);
+            directionalLight2.position.set(-1, -1, -1);
+            logoScene.add(directionalLight2);
+
+            // Animation loop
+            function animateLogo() {
+                requestAnimationFrame(animateLogo);
+                logoText.rotation.y += 0.01;
+                logoRenderer.render(logoScene, logoCamera);
+            }
+            animateLogo();
+        });
+
+        // ===== Three.js CV Sphere Animation =====
+        const cvCanvas = document.getElementById('cv-canvas');
+        const cvRenderer = new THREE.WebGLRenderer({
+            canvas: cvCanvas,
+            alpha: true,
+            antialias: true
+        });
+        cvRenderer.setSize(cvCanvas.width, cvCanvas.height);
+        cvRenderer.setPixelRatio(window.devicePixelRatio);
+
+        const cvScene = new THREE.Scene();
+        const cvCamera = new THREE.PerspectiveCamera(45, cvCanvas.width / cvCanvas.height, 0.1, 1000);
+        cvCamera.position.z = 12;
+
+        // Sphere geometry
+        const cvGeometry = new THREE.SphereGeometry(5, 32, 32);
+        const cvMaterial = new THREE.MeshPhongMaterial({
+            color: 0x00aaff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.7,
+            shininess: 100,
+            specular: 0x111111
+        });
+
+        const cvSphere = new THREE.Mesh(cvGeometry, cvMaterial);
+        cvScene.add(cvSphere);
+
+        // Add inner glowing sphere
+        const innerGlowGeometry = new THREE.SphereGeometry(4.8, 32, 32);
+        const innerGlowMaterial = new THREE.MeshBasicMaterial({
+            color: 0x00aaff,
+            transparent: true,
+            opacity: 0.2
+        });
+
+        const innerGlow = new THREE.Mesh(innerGlowGeometry, innerGlowMaterial);
+        cvScene.add(innerGlow);
+
+        // Add floating particles inside sphere
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 200;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.1,
+            color: 0x00f7ff,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        cvScene.add(particlesMesh);
+
+        // Lights
+        const cvAmbientLight = new THREE.AmbientLight(0x404040);
+        cvScene.add(cvAmbientLight);
+
+        const cvDirectionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        cvDirectionalLight.position.set(1, 1, 1);
+        cvScene.add(cvDirectionalLight);
+
+        const cvPointLight = new THREE.PointLight(0x00aaff, 1, 20);
+        cvPointLight.position.set(5, 5, 5);
+        cvScene.add(cvPointLight);
+
+        // Animation loop
+        function animateCV() {
+            requestAnimationFrame(animateCV);
+            cvSphere.rotation.x += 0.005;
+            cvSphere.rotation.y += 0.01;
+            innerGlow.rotation.x -= 0.003;
+            innerGlow.rotation.y -= 0.005;
+            particlesMesh.rotation.y += 0.001;
+            cvRenderer.render(cvScene, cvCamera);
+        }
+        animateCV();
+
+        // ===== Contact Form Submission =====
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            const whatsappMessage = `New Contact Form Submission:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`;
+            
+            const whatsappUrl = `https://wa.me/923140474635?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            alert('Your message has been sent successfully! I will contact you soon.');
+        });
+
+        // ===== Scroll Animations =====
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            
+            // Parallax effect for hero section
+            const hero = document.getElementById('hero');
+            if (hero) {
+                hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+            }
+            
+            // Animate elements on scroll
+            const animateOnScroll = (elements, className) => {
+                elements.forEach((element, index) => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.classList.add(className);
+                    }
+                });
+            };
+            
+            // Animate pricing cards
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            animateOnScroll(pricingCards, 'animate');
+            
+            // Animate portfolio items
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            animateOnScroll(portfolioItems, 'animate');
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', function() {
+            // Add animate class to hero elements
+            const heroText = document.querySelector('.hero-text');
+            if (heroText) {
+                heroText.classList.add('animate');
+            }
+            
+            // Add animate class to first section
+            const firstSection = document.querySelector('#services');
+            if (firstSection) {
+                firstSection.classList.add('animate');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
